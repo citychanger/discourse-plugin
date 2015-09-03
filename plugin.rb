@@ -17,6 +17,7 @@ class Auth0Authenticator < ::Auth::OAuth2Authenticator
     oauth2_uid = auth_token[:uid]
     data = auth_token[:info]
     result.email = email = data[:email]
+    result.username = username = data[:nickname]
     result.name = name = data[:name]
 
     oauth2_user_info = Oauth2UserInfo.where(uid: oauth2_uid, provider: 'Auth0').first
@@ -25,6 +26,7 @@ class Auth0Authenticator < ::Auth::OAuth2Authenticator
       uid: oauth2_uid,
       provider: 'Auth0',
       name: name,
+      username: username,
       email: email,
     }
 
@@ -34,6 +36,7 @@ class Auth0Authenticator < ::Auth::OAuth2Authenticator
       Oauth2UserInfo.create({ uid: oauth2_uid,
                               provider: 'Auth0',
                               name: name,
+                              username: username,
                               email: email,
                               user_id: result.user.id })
     end
