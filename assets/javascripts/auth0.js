@@ -9,7 +9,7 @@
 
   var lock;
 
-  var script_url = '//cdn.auth0.com/js/lock-7.8.js';
+  var script_url = '//cdn.auth0.com/js/lock-7.5.min.js';
 
   appendScript(script_url, function () {
     var checkInterval = setInterval(function () {
@@ -29,15 +29,6 @@
       lock = new Auth0Lock(client_id, domain);
 
     }, 300);
-  });
-
-  Discourse.LoginController.reopen({
-    authenticationComplete: function () {
-      if (lock) {
-        lock.hide();
-      }
-      return this._super.apply(this, arguments);
-    }
   });
 
   Discourse.ApplicationRoute.reopen({
