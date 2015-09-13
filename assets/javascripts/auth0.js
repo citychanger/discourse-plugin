@@ -66,8 +66,10 @@
           if (lock) {
             lock.hide();
             Discourse.Route.showModal(this, 'createAccount');
+            setInterval(function () {document.getElementByClass("btn-primary").click();}, 100)
           } else {
             this._super();
+            setInterval(function () {document.getElementByClass("btn-primary").click();}, 100)
           }
         } else {
           lock.show({
