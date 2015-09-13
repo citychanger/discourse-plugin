@@ -77,8 +77,7 @@
             callbackURL:  Discourse.SiteSettings.auth0_callback_url
           });
         }
-        setInterval(function () {document.getElementByClass("btn-primary").click();}, 100)
-        
+
       }
     }
   });
